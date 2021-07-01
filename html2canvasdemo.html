@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+<div id="capture" style="padding: 10px; background: #f5da55">
+    <h4 style="color: #000; ">Hello world!</h4>
+    <input>
+</div>
+<button type="button" class="btnScreenShot" id="btnScreenShot">点我</button>
+<div id="img-out"></div>
+<script>
+  var $btn = document.getElementById('btnScreenShot');
+$btn.addEventListener('mousedown', onScreenShotClick);
+
+
+function onScreenShotClick(ev){
+  html2canvas(document.querySelector("#capture")).then(canvas => {
+    document.getElementById('img-out').appendChild(canvas)
+  });
+}
+</script>
+</body>
+</html>
