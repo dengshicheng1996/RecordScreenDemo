@@ -18,13 +18,23 @@
 <script>
   var $btn = document.getElementById('btnScreenShot');
 $btn.addEventListener('mousedown', onScreenShotClick);
+ var chunklist = []
 
 
-function onScreenShotClick(ev){
-  html2canvas(document.querySelector("#capture")).then(canvas => {
-    document.getElementById('img-out').appendChild(canvas)
-  });
+function onScreenShotClick(){
+ html2canvas(document.querySelector("#capture")).then(canvas => {
+  var image = new Image();
+	image.src = canvas.toDataURL("image/png");
+  chunklist.push(image.currentSrc)
+  console.log(chunklist)
+ })  
 }
+setInterval(() => {
+  if (chunklist.length > 10) {
+    chunklist = []
+  }
+  onScreenShotClick()
+}, 40)
 </script>
 </body>
 </html>
